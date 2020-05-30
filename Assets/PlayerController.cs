@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 
-public class Snake : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     // Current Movement Direction
     // (by default it moves to the right)
@@ -17,7 +17,7 @@ public class Snake : MonoBehaviour
     public GameObject tailPrefab;
 
     // Keep Track of Tail
-    List<Transform> tail = new List<Transform>();
+    List<Transform> tails = new List<Transform>();
 
     // Use this for initialization
     void Start()
@@ -57,20 +57,20 @@ public class Snake : MonoBehaviour
                                                   Quaternion.identity);
 
             // Keep track of it in our tail list
-            tail.Insert(0, g.transform);
+            tails.Insert(0, g.transform);
 
             // Reset the flag
             ate = false;
         }
         // Do we have a Tail?
-        else if (tail.Count > 0)
+        else if (tails.Count > 0)
         {
             // Move last Tail Element to where the Head was
-            tail.Last().position = v;
+            tails.Last().position = v;
 
             // Add to front of list, remove from the back
-            tail.Insert(0, tail.Last());
-            tail.RemoveAt(tail.Count - 1);
+            tails.Insert(0, tails.Last());
+            tails.RemoveAt(tails.Count - 1);
         }
     }
 
