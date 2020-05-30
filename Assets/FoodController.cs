@@ -17,7 +17,7 @@ public class FoodController : MonoBehaviour
     void Start()
     {
         // Spawn food every 4 seconds, starting in 3
-        InvokeRepeating("Spawn", 3, 4);
+        //TODO: use InvokeRepeating() method to run spawn every 4 seconds
     }
 
     // Spawn one piece of food
@@ -28,13 +28,11 @@ public class FoodController : MonoBehaviour
                                   borderRight.position.x);
 
         // y position between top & bottom border
-        int y = (int)Random.Range(borderBottom.position.y,
-                                  borderTop.position.y);
+        //TODO: set y to a random value in proper range
+        int y = 10;
 
         // Instantiate the food at (x, y)
-        Instantiate(foodPrefab,
-                    new Vector2(x, y),
-                    Quaternion.identity); // default rotation
+        Instantiate(foodPrefab, new Vector2(x, y), Quaternion.identity); // default rotation
     }
 
 }

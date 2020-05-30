@@ -32,12 +32,7 @@ public class PlayerController : MonoBehaviour
         // Move in a new Direction?
         if (Input.GetKey(KeyCode.RightArrow))
             dir = Vector2.right;
-        else if (Input.GetKey(KeyCode.DownArrow))
-            dir = -Vector2.up;    // '-up' means 'down'
-        else if (Input.GetKey(KeyCode.LeftArrow))
-            dir = -Vector2.right; // '-right' means 'left'
-        else if (Input.GetKey(KeyCode.UpArrow))
-            dir = Vector2.up;
+        //TODO: set dir to proper direction for other arrow keys, left, up, down
     }
 
     void Move()
@@ -52,12 +47,10 @@ public class PlayerController : MonoBehaviour
         if (ate)
         {
             // Load Prefab into the world
-            GameObject g = (GameObject)Instantiate(tailPrefab,
-                                                  v,
-                                                  Quaternion.identity);
+            GameObject g = (GameObject)Instantiate(tailPrefab, v, Quaternion.identity);
 
             // Keep track of it in our tail list
-            tails.Insert(0, g.transform);
+            //TODO: add new object's transform to the beginning of the tails list
 
             // Reset the flag
             ate = false;
@@ -70,13 +63,14 @@ public class PlayerController : MonoBehaviour
 
             // Add to front of list, remove from the back
             tails.Insert(0, tails.Last());
-            tails.RemoveAt(tails.Count - 1);
+
+            //TODO: remove last item from last place in list
         }
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        // Food?
+        // Did the player collide with food?
         if (coll.name.StartsWith("FoodPrefab"))
         {
             // Get longer in next Move call
@@ -88,7 +82,8 @@ public class PlayerController : MonoBehaviour
         // Collided with Tail or Border
         else
         {
-            // ToDo 'You lose' screen
+            //TODO: game over message
+            //TODO: restart game
         }
     }
 }
